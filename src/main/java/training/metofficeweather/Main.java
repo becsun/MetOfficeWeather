@@ -2,6 +2,7 @@ package training.metofficeweather;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.glassfish.jersey.jackson.JacksonFeature;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -20,12 +21,15 @@ public class Main {
 
         theLogger.info("Application Started");
 
-        Client client = ClientBuilder.newClient();
-        String name = client.target(siteUrl)
-                .request(MediaType.TEXT_PLAIN)
-                .get(String.class);
+        Client client = ClientBuilder.newBuilder().register(JacksonFeature.class).build();
+        Object retrieve = client.target(siteUrl)
+                .request(MediaType.APPLICATION_JSON)
+                .get(Locations.class);
 
-        System.out.println(name);
-        theLogger.info("Got {}", name);
+        System.out.println(retrieve);
+        theLogger.info("Got {}", retrieve);
+
+
+
     }
 }	

@@ -1,7 +1,1 @@
-package training.metofficeweather;
-
-import java.util.ArrayList;
-
-public class Location {
-    private ArrayList<LocationInformation> location;
-}
+package training.metofficeweather;import com.fasterxml.jackson.annotation.JsonIgnoreProperties;import com.fasterxml.jackson.annotation.JsonProperty;import java.util.ArrayList;@JsonIgnoreProperties(ignoreUnknown = true)public class Location {    @JsonProperty(value="Location")        private ArrayList<LocationInformation> location;    public ArrayList<LocationInformation> getLocation() {        return location;    }    @Override    public String toString() {        return "Location{" +                "location=" + location +                '}';    }    public void setLocation(ArrayList<LocationInformation> location) {        this.location = location;    }}
