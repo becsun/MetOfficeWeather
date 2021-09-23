@@ -39,4 +39,4 @@ logs/
 
 dependency-reduced-pom.xml
 
-../apikey.properties
+apikey.properties
