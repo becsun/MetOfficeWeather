@@ -7,6 +7,8 @@ import org.glassfish.jersey.jackson.JacksonFeature;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.MediaType;
+import java.util.ArrayList;
+import java.util.Comparator;
 
 
 public class Main {
@@ -18,18 +20,17 @@ public class Main {
 
     public static void main(String args[]) {
 
-
         theLogger.info("Application Started");
 
         Client client = ClientBuilder.newBuilder().register(JacksonFeature.class).build();
-        Object retrieve = client.target(siteUrl)
+        Locations retrieve = client.target(siteUrl)
                 .request(MediaType.APPLICATION_JSON)
                 .get(Locations.class);
 
-        System.out.println(retrieve);
         theLogger.info("Got {}", retrieve);
 
-
-
+        ArrayList<LocationInformation> locationsList = new ArrayList<>();
+        retrieve.getLocation().streamLocationInformation().sorted(Comparator.comparing(LocationInformation::getName)).forEach(locationsList::add);
+        locationsList.forEach(e -> System.out.println(e.getName()));
     }
 }	
