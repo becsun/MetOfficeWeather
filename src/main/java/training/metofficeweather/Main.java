@@ -9,6 +9,8 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Scanner;
 
 
 public class Main {
@@ -30,7 +32,19 @@ public class Main {
         theLogger.info("Got {}", retrieve);
 
         ArrayList<LocationInformation> locationsList = new ArrayList<>();
-        retrieve.getLocation().streamLocationInformation().sorted(Comparator.comparing(LocationInformation::getName)).forEach(locationsList::add);
+        HashMap<String, String> locationKeys = new HashMap<>();
+        Location somelist = retrieve.getLocation();
+        somelist.streamLocationInformation().forEach(e -> locationKeys.put(e.getName(), e.getId()));
+        somelist.streamLocationInformation().sorted(Comparator.comparing(LocationInformation::getName)).forEach(locationsList::add);
         locationsList.forEach(e -> System.out.println(e.getName()));
+
+        System.out.println("Which location are you interested in?");
+        Scanner scanner = new Scanner(System.in);
+        String userInput = scanner.nextLine();
+
+        System.out.println(locationKeys.get(userInput));
+
+        String siteUrl = "http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/" + locationKeys.get(userInput) + "?res=3hourly&key=" + apiKey;
+
     }
 }	
