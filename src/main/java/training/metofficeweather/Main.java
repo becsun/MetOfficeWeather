@@ -29,13 +29,15 @@ public class Main {
                 .request(MediaType.APPLICATION_JSON)
                 .get(Locations.class);
 
+
+
         theLogger.info("Got {}", retrieve);
 
         ArrayList<LocationInformation> locationsList = new ArrayList<>();
         HashMap<String, String> locationKeys = new HashMap<>();
-        Location somelist = retrieve.getLocation();
-        somelist.streamLocationInformation().forEach(e -> locationKeys.put(e.getName(), e.getId()));
-        somelist.streamLocationInformation().sorted(Comparator.comparing(LocationInformation::getName)).forEach(locationsList::add);
+        Location listOfLocations = retrieve.getLocation();
+        listOfLocations.streamLocationInformation().forEach(e -> locationKeys.put(e.getName(), e.getId()));
+        listOfLocations.streamLocationInformation().sorted(Comparator.comparing(LocationInformation::getName)).forEach(locationsList::add);
         locationsList.forEach(e -> System.out.println(e.getName()));
 
         System.out.println("Which location are you interested in?");
@@ -44,7 +46,13 @@ public class Main {
 
         System.out.println(locationKeys.get(userInput));
 
-        String siteUrl = "http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/" + locationKeys.get(userInput) + "?res=3hourly&key=" + apiKey;
+        String siteUrlForChosenCity = "http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/" + locationKeys.get(userInput) + "?res=3hourly&key=" + apiKey;
 
+
+        Root retrieveWeather = client.target(siteUrlForChosenCity)
+                .request(MediaType.APPLICATION_JSON)
+                .get(Root.class);
+
+        System.out.println(retrieveWeather);
     }
 }	

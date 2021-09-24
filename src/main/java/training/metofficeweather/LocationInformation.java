@@ -11,7 +11,7 @@ public class LocationInformation {
     private String name;
     private String region;
     private String unitaryAuthArea;
-    private String obsSource;
+
 
     @Override
     public String toString() {
@@ -23,7 +23,6 @@ public class LocationInformation {
                 ", name='" + name + '\'' +
                 ", region='" + region + '\'' +
                 ", unitaryAuthArea='" + unitaryAuthArea + '\'' +
-                ", obsSource='" + obsSource + '\'' +
                 '}';
     }
 
@@ -83,11 +82,4 @@ public class LocationInformation {
         this.unitaryAuthArea = unitaryAuthArea;
     }
 
-    public String getObsSource() {
-        return obsSource;
-    }
-
-    public void setObsSource(String obsSource) {
-        this.obsSource = obsSource;
-    }
 }
