@@ -10,14 +10,11 @@ import training.metofficeweather.data.weatherInformatioin.Root;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.MediaType;
-import java.util.HashMap;
 
 public class MetOfficeApi {
 
     private static String apiKey = PropertiesReader.getProperty("API_KEY");
     static final Logger theLogger = LogManager.getLogger("Weather");
-
-
 
     public static Locations locationsApiCall(){
         final String siteUrl = "http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/sitelist?key=" + apiKey;
@@ -32,8 +29,6 @@ public class MetOfficeApi {
 
         return retrieveLocations;
     }
-
-
 
     public static Root weatherApiCall(String city){
 
