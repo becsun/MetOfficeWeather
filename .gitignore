@@ -39,4 +39,6 @@ logs/
 
 dependency-reduced-pom.xml
 
+.env
+
 apikey.properties
