@@ -1,6 +1,7 @@
 package training.metofficeweather;
 
 import training.metofficeweather.data.loctionInformation.LocationInformation;
+import training.metofficeweather.data.loctionInformation.Locations;
 import training.metofficeweather.data.metOfficeApi.MetOfficeApi;
 import training.metofficeweather.data.weatherInformatioin.Root;
 
@@ -15,7 +16,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String args[]) {
 
-        MetOfficeApi.
+        Locations retrieveLocations = MetOfficeApi.locationsApiCall();
 
         ArrayList<LocationInformation> listOfCities = retrieveLocations.getListOfCities();
         listOfCities.forEach(e -> System.out.println(e.getName()));
@@ -25,14 +26,9 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         String userInput = scanner.nextLine();
 
-
-
-        Root retrieveWeather = client.target(siteUrlForChosenCity)
-                .request(MediaType.APPLICATION_JSON)
-                .get(Root.class);
+        Root retrieveWeather = MetOfficeApi.weatherApiCall(cities.get(userInput));
 
         retrieveWeather.weatherReport(userInput, retrieveWeather);
-
 
     }
 
