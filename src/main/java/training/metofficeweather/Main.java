@@ -53,6 +53,6 @@ public class Main {
                 .request(MediaType.APPLICATION_JSON)
                 .get(Root.class);
 
-        System.out.println(retrieveWeather);
+        System.out.println(retrieveWeather.getSiteRep().getdV().getLocationForWeather().getPeriod().get(0).getRep().get(0).getWeatherDescription());
     }
 }	

@@ -1,10 +1,22 @@
 package training.metofficeweather;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.List;
-
+import java.util.ArrayList;
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Wx{
     @JsonProperty("Param")
-    public List<Param> param;
+    public ArrayList<Param> param;
+
+    public ArrayList<Param> getParam() {
+        return param;
+    }
+
+    @Override
+    public String toString() {
+        return "Wx{" +
+                "param=" + param +
+                '}';
+    }
 }
