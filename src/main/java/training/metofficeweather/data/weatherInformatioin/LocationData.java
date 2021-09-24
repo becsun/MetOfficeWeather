@@ -1,4 +1,4 @@
-package training.metofficeweather;
+package training.metofficeweather.data.weatherInformatioin;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class DV{
+public class LocationData {
     public Date dataDate;
     public String type;
     @JsonProperty("Location")

@@ -1,9 +1,9 @@
-package training.metofficeweather;
+package training.metofficeweather.data.weatherInformatioin;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Param{
+public class WeatherParameters {
     public String name;
     public String units;
     @JsonProperty("$")

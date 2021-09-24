@@ -1,10 +1,10 @@
-package training.metofficeweather;
+package training.metofficeweather.data.weatherInformatioin;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
-import java.util.List;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 
 public class LocationForWeather {
@@ -16,7 +16,7 @@ public class LocationForWeather {
         public String continent;
         public String elevation;
         @JsonProperty("Period")
-        public ArrayList<Period> period;
+        public ArrayList<DatePeriod> period;
 
         @Override
         public String toString() {
@@ -60,7 +60,8 @@ public class LocationForWeather {
                 return elevation;
         }
 
-        public ArrayList<Period> getPeriod() {
+        public ArrayList<DatePeriod> getPeriod() {
                 return period;
         }
+
 }

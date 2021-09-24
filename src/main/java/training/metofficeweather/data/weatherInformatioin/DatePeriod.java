@@ -1,18 +1,18 @@
-package training.metofficeweather;
+package training.metofficeweather.data.weatherInformatioin;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 ;import java.util.ArrayList;
-import java.util.List;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 
-public class Period{
+public class DatePeriod {
     public String type;
     public String value;
     @JsonProperty("Rep")
-    public ArrayList<Rep> rep;
+    public ArrayList<WeatherReport> weatherReport;
 
     public String getType() {
         return type;
@@ -22,8 +22,8 @@ public class Period{
         return value;
     }
 
-    public ArrayList<Rep> getRep() {
-        return rep;
+    public ArrayList<WeatherReport> getWeatherReport() {
+        return weatherReport;
     }
 
     @Override
@@ -31,7 +31,7 @@ public class Period{
         return "Period{" +
                 "type='" + type + '\'' +
                 ", value='" + value + '\'' +
-                ", rep=" + rep +
+                ", rep=" + weatherReport +
                 '}';
     }
 }

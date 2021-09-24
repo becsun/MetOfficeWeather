@@ -1,4 +1,4 @@
-package training.metofficeweather;
+package training.metofficeweather.data.loctionInformation;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
