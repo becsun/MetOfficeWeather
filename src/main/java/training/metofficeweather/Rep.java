@@ -5,86 +5,86 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Rep{
     @JsonProperty("D")
-    public String d;
+    public String windDirection;
     @JsonProperty("F")
-    public String f;
+    public String feelsLikeTemp;
     @JsonProperty("G")
-    public String g;
+    public String windGust;
     @JsonProperty("H")
-    public String h;
+    public String relativeHumidity;
     @JsonProperty("Pp")
-    public String pp;
+    public String precipitationProbability;
     @JsonProperty("S")
-    public String s;
+    public String windSpeed;
     @JsonProperty("T")
-    public String t;
+    public String temperature;
     @JsonProperty("V")
-    public String v;
+    public String visibility;
     @JsonProperty("W")
-    public String w;
+    public String weather;
     @JsonProperty("U")
-    public String u;
+    public String ultraviolet;
     @JsonProperty("$")
-    public String weatherDescription;
+    public String minutesAfterMidnight;
 
-    public String getD() {
-        return d;
+    public String getWindDirection() {
+        return windDirection;
     }
 
-    public String getF() {
-        return f;
+    public String getFeelsLikeTemp() {
+        return feelsLikeTemp;
     }
 
-    public String getG() {
-        return g;
+    public String getWindGust() {
+        return windGust;
     }
 
-    public String getH() {
-        return h;
+    public String getRelativeHumidity() {
+        return relativeHumidity;
     }
 
-    public String getPp() {
-        return pp;
+    public String getPrecipitationProbability() {
+        return precipitationProbability;
     }
 
-    public String getS() {
-        return s;
+    public String getWindSpeed() {
+        return windSpeed;
     }
 
-    public String getT() {
-        return t;
+    public String getTemperature() {
+        return temperature;
     }
 
-    public String getV() {
-        return v;
+    public String getVisibility() {
+        return visibility;
     }
 
-    public String getW() {
-        return w;
+    public String getWeather() {
+        return weather;
     }
 
-    public String getU() {
-        return u;
+    public String getUltraviolet() {
+        return ultraviolet;
     }
 
-    public String getWeatherDescription() {
-        return weatherDescription;
+    public String getMinutesAfterMidnight() {
+        return minutesAfterMidnight;
     }
 
     @Override
     public String toString() {
         return "Rep{" +
-                "d='" + d + '\'' +
-                ", f='" + f + '\'' +
-                ", g='" + g + '\'' +
-                ", h='" + h + '\'' +
-                ", pp='" + pp + '\'' +
-                ", s='" + s + '\'' +
-                ", t='" + t + '\'' +
-                ", v='" + v + '\'' +
-                ", w='" + w + '\'' +
-                ", u='" + u + '\'' +
-                ", weatherDescription='" + weatherDescription + '\'' +
+                "d='" + windDirection + '\'' +
+                ", f='" + feelsLikeTemp + '\'' +
+                ", g='" + windGust + '\'' +
+                ", h='" + relativeHumidity + '\'' +
+                ", pp='" + precipitationProbability + '\'' +
+                ", s='" + windSpeed + '\'' +
+                ", t='" + temperature + '\'' +
+                ", v='" + visibility + '\'' +
+                ", w='" + weather + '\'' +
+                ", u='" + ultraviolet + '\'' +
+                ", minutesAfterMidnight='" + minutesAfterMidnight + '\'' +
                 '}';
     }
 }
