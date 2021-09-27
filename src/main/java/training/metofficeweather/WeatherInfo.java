@@ -2,11 +2,9 @@ package training.metofficeweather;
 
 public class WeatherInfo {
     private final String locationId;
-    private final String city;
 
-    public WeatherInfo(String locationId, String city) {
+    public WeatherInfo(String locationId) {
         this.locationId = locationId;
-        this.city = city;
     }
 
 
@@ -14,7 +12,5 @@ public class WeatherInfo {
         return locationId;
     }
 
-    public String getCity() {
-        return city;
-    }
+
 }

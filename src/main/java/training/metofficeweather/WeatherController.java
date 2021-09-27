@@ -7,6 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 import training.metofficeweather.data.loctionInformation.LocationInformation;
 import training.metofficeweather.data.loctionInformation.Locations;
 import training.metofficeweather.data.metOfficeApi.MetOfficeApi;
+import training.metofficeweather.data.weatherInformatioin.WeatherReport;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,6 +27,7 @@ public class WeatherController {
 
     @RequestMapping("/weatherInfo")
     ModelAndView weatherInfo(@RequestParam("locationId") String locationId) {
-        return new ModelAndView("info", "weatherInfo", new WeatherInfo(locationId, cities.get(locationId)));
+        WeatherReport weatherInformation = retrieveWeather.getWeatherInformationForChosenCity(retrieveWeather);
+        return new ModelAndView("info", "weatherInfo", weatherInformation) ;
     }
 }
