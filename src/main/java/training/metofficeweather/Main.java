@@ -25,7 +25,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         int userInputForSearchOption = scanner.nextInt();
 
-        // TODO: get these out in a new method/class
+        // TODO get these out in a new method/class
         boolean userQuit = false;
 
         while (!userQuit) {
@@ -36,8 +36,8 @@ public class Main {
                 System.out.println("Please type the first characters");
                 Scanner cityNameScannerByFirstChar = new Scanner(System.in);
                 String userInputForSearchCharacter = cityNameScannerByFirstChar.nextLine();
-                //TODO: need a try catch to catch incorrect characters or an if statement
-                SearchByFirstChar.getCitiesWithFirstLetter(cities, userInputForSearchCharacter).forEach(city -> System.out.println(city));
+                //TODO need a try catch to catch incorrect characters or an if statement
+                SearchByFirstChar.getCitiesWithFirstLetter(cities, userInputForSearchCharacter).forEach(System.out::println);
                 userQuit = true;
             } else if (userInputForSearchOption == 3) {
                 listOfCities.forEach(e -> System.out.println(e.getName()));

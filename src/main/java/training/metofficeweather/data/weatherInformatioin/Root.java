@@ -20,7 +20,7 @@ public class Root{
         String weatherType = weatherInformation.getWeatherType(weatherInformation);
         String temperature = weatherInformation.getTemperature();
 
-        System.out.println("The weather in " + userInput + " is " + weatherType + " and the temperature is " + temperature + "\u00B0C");
+        System.out.println("The weather forecast in " + userInput + " is " + weatherType + " and the temperature will be " + temperature + "\u00B0C");
 
     }
 
