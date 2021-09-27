@@ -21,12 +21,13 @@ public class WeatherController {
 
     ArrayList<LocationInformation> listOfCities = retrieveLocations.getListOfCities();
     HashMap<String, String> cities = retrieveLocations.getHashMapOfLocationKeys();
-
+    ArrayList<String> cityNames = new ArrayList<>();
 
 
     @RequestMapping("/weather")
     ModelAndView home() {
-        return new ModelAndView("index","cityList", new CityList(listOfCities));
+        listOfCities.forEach(e -> cityNames.add(e.getName()));
+        return new ModelAndView("index","cityList", new CityList(cityNames));
     }
 
     @RequestMapping("/weatherInfo")

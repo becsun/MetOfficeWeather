@@ -3,15 +3,18 @@ package training.metofficeweather;
 import training.metofficeweather.data.loctionInformation.LocationInformation;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.stream.Stream;
 
 public class CityList {
-    private ArrayList<LocationInformation> listOfCities;
+    private static ArrayList<String> cityNames;
 
-    public CityList(ArrayList<LocationInformation> listOfCities) {
-        this.listOfCities = listOfCities;
+    public CityList(ArrayList<String> cityNames) {
+        this.cityNames = cityNames;
     }
 
-    public ArrayList<LocationInformation> getListOfCities() {
-        return listOfCities;
+    public static ArrayList<String> getCityNames() {
+        return cityNames;
     }
 }
