@@ -17,15 +17,16 @@ import static training.metofficeweather.data.weatherInformatioin.Root.getWeather
 
 @Controller
 public class WeatherController {
-//    Locations retrieveLocations = MetOfficeApi.locationsApiCall();
-//
-//    ArrayList<LocationInformation> listOfCities = retrieveLocations.getListOfCities();
-//    HashMap<String, String> cities = retrieveLocations.getHashMapOfLocationKeys();
+    Locations retrieveLocations = MetOfficeApi.locationsApiCall();
+
+    ArrayList<LocationInformation> listOfCities = retrieveLocations.getListOfCities();
+    HashMap<String, String> cities = retrieveLocations.getHashMapOfLocationKeys();
+
 
 
     @RequestMapping("/weather")
     ModelAndView home() {
-        return new ModelAndView("index");
+        return new ModelAndView("index","cityList", new CityList(listOfCities));
     }
 
     @RequestMapping("/weatherInfo")
