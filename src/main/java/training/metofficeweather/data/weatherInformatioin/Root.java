@@ -11,12 +11,12 @@ public class Root{
         return siteRep;
     }
 
-    public WeatherReport getWeatherInformationForChosenCity(Root retrieveWeather) {
+    public static WeatherReport getWeatherInformationForChosenCity(Root retrieveWeather) {
         return retrieveWeather.getSiteRep().getLocationData().getLocationForWeather().getPeriod().get(0).getWeatherReport().get(0);
     }
 
     public void weatherReport(String userInput, Root retrieveWeather) {
-        WeatherReport weatherInformation = retrieveWeather.getWeatherInformationForChosenCity(retrieveWeather);
+        WeatherReport weatherInformation = getWeatherInformationForChosenCity(retrieveWeather);
         String weatherType = weatherInformation.getWeatherType(weatherInformation);
         String temperature = weatherInformation.getTemperature();
 

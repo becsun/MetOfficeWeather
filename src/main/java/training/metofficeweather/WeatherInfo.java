@@ -1,16 +1,16 @@
 package training.metofficeweather;
 
+import training.metofficeweather.data.weatherInformatioin.WeatherReport;
+
 public class WeatherInfo {
-    private final String locationId;
+    private final WeatherReport weatherInformation;
 
-    public WeatherInfo(String locationId) {
-        this.locationId = locationId;
+    public WeatherInfo(WeatherReport weatherInformation) {
+        this.weatherInformation = weatherInformation;
     }
 
-
-    public String getLocationId() {
-        return locationId;
+    public WeatherReport getWeatherInformation() {
+        return weatherInformation;
     }
-
 
 }

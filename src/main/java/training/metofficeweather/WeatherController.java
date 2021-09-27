@@ -7,17 +7,20 @@ import org.springframework.web.servlet.ModelAndView;
 import training.metofficeweather.data.loctionInformation.LocationInformation;
 import training.metofficeweather.data.loctionInformation.Locations;
 import training.metofficeweather.data.metOfficeApi.MetOfficeApi;
+import training.metofficeweather.data.weatherInformatioin.Root;
 import training.metofficeweather.data.weatherInformatioin.WeatherReport;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static training.metofficeweather.data.weatherInformatioin.Root.getWeatherInformationForChosenCity;
+
 @Controller
 public class WeatherController {
-    Locations retrieveLocations = MetOfficeApi.locationsApiCall();
-
-    ArrayList<LocationInformation> listOfCities = retrieveLocations.getListOfCities();
-    HashMap<String, String> cities = retrieveLocations.getHashMapOfLocationKeys();
+//    Locations retrieveLocations = MetOfficeApi.locationsApiCall();
+//
+//    ArrayList<LocationInformation> listOfCities = retrieveLocations.getListOfCities();
+//    HashMap<String, String> cities = retrieveLocations.getHashMapOfLocationKeys();
 
 
     @RequestMapping("/weather")
@@ -27,7 +30,8 @@ public class WeatherController {
 
     @RequestMapping("/weatherInfo")
     ModelAndView weatherInfo(@RequestParam("locationId") String locationId) {
-        WeatherReport weatherInformation = retrieveWeather.getWeatherInformationForChosenCity(retrieveWeather);
-        return new ModelAndView("info", "weatherInfo", weatherInformation) ;
+        Root retrieveWeather = MetOfficeApi.weatherApiCall(locationId);
+        WeatherReport weatherInformation = getWeatherInformationForChosenCity(retrieveWeather);
+        return new ModelAndView("info", "weatherInfo", new WeatherInfo(weatherInformation));
     }
 }
