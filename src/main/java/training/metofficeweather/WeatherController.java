@@ -31,8 +31,8 @@ public class WeatherController {
     }
 
     @RequestMapping("/weatherInfo")
-    ModelAndView weatherInfo(@RequestParam("locationId") String locationId) {
-        Root retrieveWeather = MetOfficeApi.weatherApiCall(locationId);
+    ModelAndView weatherInfo(@RequestParam("cityName") String cityName) {
+        Root retrieveWeather = MetOfficeApi.weatherApiCall(cities.get(cityName));
         WeatherReport weatherInformation = getWeatherInformationForChosenCity(retrieveWeather);
         return new ModelAndView("info", "weatherInfo", new WeatherInfo(weatherInformation));
     }
