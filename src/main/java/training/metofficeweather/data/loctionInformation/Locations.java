@@ -30,7 +30,7 @@ public class Locations {
 
     public HashMap<String, String> getHashMapOfLocationKeys() {
         HashMap<String, String> locationKeys = new HashMap<>();
-        getStreamLocationInformation().forEach(e -> locationKeys.put(e.getName(), e.getId()));
+        getStreamLocationInformation().forEach(e -> locationKeys.put(e.getId(),e.getName()));
         return locationKeys;
     }
 

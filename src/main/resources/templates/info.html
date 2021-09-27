@@ -12,7 +12,7 @@
         <div layout:fragment="content" class="container body-content">
             <h2>Weather Information</h2>
             <div>
-                <p>You entered location id <span th:text="${weatherInfo.locationId}"></span></p>
+                <p>You entered location id <span th:text="${weatherInfo.city}" th:text="${weatherInfo.locationId}"></span></p>
             </div>
         </div>
     </body>
