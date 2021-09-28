@@ -13,7 +13,7 @@
     </div>
     <div>
         <tr>
-            <td th:each="city: ${cityList.cityNames}"><span th:text="${city}"/><br></td>
+            <td th:each="city: ${listOfCities}"><span th:text="${city.name}"/><br></td>
         <tr/>
     </div>
     <div class="row">   

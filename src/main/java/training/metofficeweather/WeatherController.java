@@ -1,6 +1,7 @@
 package training.metofficeweather;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,13 +22,11 @@ public class WeatherController {
 
     ArrayList<LocationInformation> listOfCities = retrieveLocations.getListOfCities();
     HashMap<String, String> cities = retrieveLocations.getHashMapOfLocationKeys();
-    ArrayList<String> cityNames = new ArrayList<>();
 
-
-    @RequestMapping("/weather")
-    ModelAndView home() {
-        listOfCities.forEach(e -> cityNames.add(e.getName()));
-        return new ModelAndView("index","cityList", new CityList(cityNames));
+    @RequestMapping("/")
+    public String home(Model model) {
+        model.addAttribute("listOfCities", listOfCities);
+        return "index";
     }
 
     @RequestMapping("/weatherInfo")
