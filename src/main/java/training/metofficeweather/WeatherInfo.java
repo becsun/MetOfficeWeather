@@ -4,8 +4,10 @@ import training.metofficeweather.data.weatherInformatioin.WeatherReport;
 
 public class WeatherInfo {
     private final WeatherReport weatherInformation;
+    private final String cityName;
 
-    public WeatherInfo(WeatherReport weatherInformation) {
+    public WeatherInfo(WeatherReport weatherInformation, String cityName) {
+        this.cityName = cityName;
         this.weatherInformation = weatherInformation;
     }
 
@@ -13,4 +15,7 @@ public class WeatherInfo {
         return weatherInformation;
     }
 
+    public String getCityName() {
+        return cityName;
+    }
 }

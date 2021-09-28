@@ -4,7 +4,6 @@
       layout:decorate="layout">
 <head>
     <title>Home page</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" />
 </head>
 <body>
 <div layout:fragment="content" class="container body-content">
@@ -20,13 +19,14 @@
 <!--    </div>-->
     <div class="row">   
         <div class="col-md-12">
-            <form action="#" th:action="@{/weatherInfo}" th:object="${listOfCities}" method="POST">
+            <form name="weatherInfo" action="#" th:action="@{/weatherInfo}" th:object="${listOfCities}" method="POST">
                 <fieldset>
                     <legend>Location name: </legend>
-                    <select th:field="*{city.name}">
+                    <select>
                         <option th:each="city : ${listOfCities}"
                                 th:value="${city.name}"
-                                th:text="${city.name}">
+                                th:text="${city.name}"
+                                name="cityName">
                         </option>
                     </select>
                     <input type="submit" value="Get Weather Info" />

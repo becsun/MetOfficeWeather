@@ -13,6 +13,7 @@ import training.metofficeweather.data.metOfficeApi.MetOfficeApi;
 import training.metofficeweather.data.weatherInformatioin.Root;
 import training.metofficeweather.data.weatherInformatioin.WeatherReport;
 
+import javax.ws.rs.Consumes;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -31,11 +32,11 @@ public class WeatherController {
         return "index";
     }
 
-    @RequestMapping(value= "/weatherInfo", method= RequestMethod.POST)
-    ModelAndView weatherInfo(@RequestBody Object citiesnumero) {
-        String cityName = "Yoxall";
+    @RequestMapping(value= "/weatherInfo", method= RequestMethod.POST, consumes="application/x-www-form-urlencoded")
+
+    ModelAndView weatherInfo(@RequestParam("cityName") String cityName) {
         Root retrieveWeather = MetOfficeApi.weatherApiCall(cities.get(cityName));
         WeatherReport weatherInformation = getWeatherInformationForChosenCity(retrieveWeather);
-        return new ModelAndView("info", "weatherInfo", new WeatherInfo(weatherInformation));
+        return new ModelAndView("info", "weatherInfo", new WeatherInfo(weatherInformation, cityName));
     }
 }

@@ -12,7 +12,7 @@
         <div layout:fragment="content" class="container body-content">
             <h2>Weather Information</h2>
             <div>
-                <p>The temperature <span th:text="${weatherInfo.weatherInformation.getTemperature()}"></span> <span th:text="${weatherInfo.weatherInformation.getWeatherType(weatherInfo.weatherInformation)}"></span></p>
+                <p>The temperature in <span th:text="${weatherInfo.cityName}"></span> is <span th:text="${weatherInfo.weatherInformation.getTemperature()}"></span> <span th:text="${weatherInfo.weatherInformation.getWeatherType(weatherInfo.weatherInformation)}"></span></p>
             </div>
         </div>
     </body>
