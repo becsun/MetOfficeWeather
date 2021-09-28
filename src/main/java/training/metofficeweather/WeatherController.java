@@ -28,7 +28,7 @@ public class WeatherController {
         return "index";
     }
 
-    @PostMapping(path = "/weatherInfo")
+    @RequestMapping("/weatherInfo")
     public ModelAndView submitCityForm(@RequestParam("cityName") CityForm cityForm) {
         String cityNameFromAttribute = cityForm.getCityName();
         Root retrieveWeather = MetOfficeApi.weatherApiCall(cities.get(cityNameFromAttribute));

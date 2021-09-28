@@ -4,17 +4,22 @@
       layout:decorate="layout">
 <head>
     <title>Home page</title>
+    <link th:href="@{index.css}" rel="stylesheet" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 </head>
 <body>
-    <div layout:fragment="content" class="container body-content">
-        <div class="jumbotron">
-            <h1>Met Office Weather</h1>
-            <p class="lead">For all your weather needs. Enter a location id below and click enter to see the weather forecast for that location.</p>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <form th:action="@{/weatherInfo}" method="POST">
-                    <select name="cityName">
+    <header class="jumbotron">
+        <h1>Met Office Weather</h1>
+        <p class="lead">For all your weather needs. Enter a location id below and click enter to see the weather forecast for that location.</p>
+    </header>
+    <div layout:fragment="content" class="container body-content background-image">
+        <div class="container-fluid">
+            <div class="col-md-12" positioning>
+                <form class="row justify-content-center" th:action="@{/weatherInfo}" method="POST">
+                    <legend class="text-justify">Location name: </legend>
+                    <select name="cityName" class="form-select form-select-lg mb-3 ">
                         <option th:each="city : ${listOfCities}"
                                 th:value="${city.name}"
                                 th:text="${city.name}">
