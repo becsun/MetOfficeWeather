@@ -25,7 +25,7 @@ public class MetOfficeApi {
                 .request(MediaType.APPLICATION_JSON)
                 .get(Locations.class);
 
-        theLogger.info("Got {}", retrieveLocations);
+        theLogger.info("Request received for retrieveLocations");
 
         return retrieveLocations;
     }
@@ -41,7 +41,7 @@ public class MetOfficeApi {
                 .request(MediaType.APPLICATION_JSON)
                 .get(Root.class);
 
-        theLogger.info("Got {}", retrieveWeather);
+        theLogger.info("Request received for retrieveWeather");
 
         return retrieveWeather;
     }
