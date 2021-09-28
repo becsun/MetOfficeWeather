@@ -2,7 +2,9 @@ package training.metofficeweather;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import training.metofficeweather.data.loctionInformation.LocationInformation;
@@ -29,8 +31,9 @@ public class WeatherController {
         return "index";
     }
 
-    @RequestMapping("/weatherInfo")
-    ModelAndView weatherInfo(@RequestParam("cityName") String cityName) {
+    @RequestMapping(value= "/weatherInfo", method= RequestMethod.POST)
+    ModelAndView weatherInfo(@RequestBody Object citiesnumero) {
+        String cityName = "Yoxall";
         Root retrieveWeather = MetOfficeApi.weatherApiCall(cities.get(cityName));
         WeatherReport weatherInformation = getWeatherInformationForChosenCity(retrieveWeather);
         return new ModelAndView("info", "weatherInfo", new WeatherInfo(weatherInformation));

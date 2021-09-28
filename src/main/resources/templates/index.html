@@ -4,6 +4,7 @@
       layout:decorate="layout">
 <head>
     <title>Home page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" />
 </head>
 <body>
 <div layout:fragment="content" class="container body-content">
@@ -11,17 +12,23 @@
         <h1>Met Office Weather</h1>
         <p class="lead">For all your weather needs. Enter a location id below and click enter to see the weather forecast for that location.</p>
     </div>
-    <div>
-        <tr>
-            <td th:each="city: ${listOfCities}"><span th:text="${city.name}"/><br></td>
-        <tr/>
-    </div>
+<!--    <div class="form-group blu-margin">-->
+<!--        <select class="form-control"  id="dropOperator">-->
+<!--            <option value="0">select a city</option>-->
+<!--            <option th:each="city : ${listOfCities}" th:value="${city.name}" th:text="${city.name}"></option>-->
+<!--        </select>-->
+<!--    </div>-->
     <div class="row">   
         <div class="col-md-12">
-            <form id="messageForm" th:action="@{/weatherInfo}" method="get">
+            <form action="#" th:action="@{/weatherInfo}" th:object="${listOfCities}" method="POST">
                 <fieldset>
                     <legend>Location name: </legend>
-                    <input type="text" name="cityName">
+                    <select th:field="*{city.name}">
+                        <option th:each="city : ${listOfCities}"
+                                th:value="${city.name}"
+                                th:text="${city.name}">
+                        </option>
+                    </select>
                     <input type="submit" value="Get Weather Info" />
                 </fieldset>
             </form>
