@@ -21,13 +21,13 @@
     </head>
     <body>
         <div layout:fragment="content" class="container-fluid body-content">
-            <div class="row">
-                <div class="col">
+            <div class="jumbotron row header-container">
+                <header class="col">
                     <h2>Weather Information</h2>
                     <div>
                         <p>The temperature in <span th:text="${weatherInfo.cityName}"></span></p>
                     </div>
-                </div>
+                </header>
             </div>
             <div class="row">
                 <div class="col">
@@ -61,7 +61,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col" id='map' style='width: 400px; height: 300px;'></div>
+                <div class="col sticky-top" id='map' style='width: 400px; height: 800px;'></div>
             </div>
 
         </div>

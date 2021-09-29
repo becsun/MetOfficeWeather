@@ -18,9 +18,9 @@
         <div class="container-fluid">
             <div class="col-md-12" positioning>
                 <form class="row justify-content-center" th:action="@{/weatherInfo}" method="POST">
-                    <legend class="text-justify">Location name: </legend>
+                    <legend class="text-justify location-name">Location name: </legend>
                     <div class="input-group">
-                            <select  name="cityName" class="custom-select border border-secondary" id="inputGroupSelect04">
+                            <select name="cityName" class="custom-select border border-secondary custom-select-lg" id="inputGroupSelect04">
                                 <option th:each="city : ${listOfCities}"
                                         th:value="${city.name}"
                                         th:text="${city.name}">
