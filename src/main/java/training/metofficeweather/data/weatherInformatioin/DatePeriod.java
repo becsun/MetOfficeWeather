@@ -3,14 +3,16 @@ package training.metofficeweather.data.weatherInformatioin;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
-;import java.util.ArrayList;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 
 public class DatePeriod {
     public String type;
-    public String value;
+    @JsonProperty("value")
+    public String date;
     @JsonProperty("Rep")
     public ArrayList<WeatherReport> weatherReport;
 
@@ -18,8 +20,16 @@ public class DatePeriod {
         return type;
     }
 
-    public String getValue() {
-        return value;
+    public String getDate() {
+        return date;
+    }
+
+    public String getProperDate() {
+        return date.substring(0,10);
+    }
+
+    public DayOfWeek getDayOfWeek() {
+        return DayOfWeek.from(LocalDate.parse(getProperDate()));
     }
 
     public ArrayList<WeatherReport> getWeatherReport() {
@@ -30,7 +40,7 @@ public class DatePeriod {
     public String toString() {
         return "Period{" +
                 "type='" + type + '\'' +
-                ", value='" + value + '\'' +
+                ", value='" + date + '\'' +
                 ", rep=" + weatherReport +
                 '}';
     }

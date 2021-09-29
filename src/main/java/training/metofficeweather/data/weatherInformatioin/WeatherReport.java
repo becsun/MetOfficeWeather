@@ -32,7 +32,7 @@ public class WeatherReport {
     }
 
     public String getFeelsLikeTemp() {
-        return feelsLikeTemp;
+        return feelsLikeTemp + "\u00B0C";
     }
 
     public String getWindGust() {
@@ -44,7 +44,7 @@ public class WeatherReport {
     }
 
     public String getPrecipitationProbability() {
-        return precipitationProbability;
+        return precipitationProbability + "%";
     }
 
     public String getWindSpeed() {
@@ -52,7 +52,7 @@ public class WeatherReport {
     }
 
     public String getTemperature() {
-        return temperature;
+        return temperature + "\u00B0C";
     }
 
     public String getVisibility() {
@@ -67,13 +67,16 @@ public class WeatherReport {
         return ultraviolet;
     }
 
-    public String getMinutesAfterMidnight() {
-        return minutesAfterMidnight;
+    public String getMinutesAfterMidnight() { return minutesAfterMidnight; }
+
+    public String getHourAfterMidnight() {
+        Integer hour = Integer.parseInt(minutesAfterMidnight) / 60;
+        return hour.toString() + ":00";
     }
 
-    public String getWeatherType(WeatherReport weatherInformation) {
+    public String getWeatherType() {
         String weatherType = null;
-        switch (weatherInformation.getWeather()) {
+        switch (getWeather()) {
             case "0":
                 weatherType = "Clear night";
                 break;
