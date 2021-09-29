@@ -1,0 +1,26 @@
+.weather-image {
+    width: 80px;
+    height: 80px;
+}
+
+.wobble {
+    animation: shake 1.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+    10%, 90% {
+        transform: rotate(90deg);
+    }
+
+    20%, 80% {
+        transform: rotate(180deg);
+    }
+
+    30%, 50%, 70% {
+        transform: rotate(270deg);
+    }
+
+    40%, 60% {
+        transform: rotate(180deg);
+    }
+}
