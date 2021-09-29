@@ -12,46 +12,56 @@
         <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js SameSite=None'></script>
         <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.js"></script>
         <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css' type='text/css' />
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <link th:href="@{info.css}" rel="stylesheet" />
         <title>Weather Information</title>
     </head>
     <body>
-    <div id='map' style='width: 400px; height: 300px;'></div>
-        <div layout:fragment="content" class="container body-content">
-            <h2>Weather Information</h2>
-            <div>
-                <p>The temperature in <span th:text="${weatherInfo.cityName}"></span></p>
+
+        <div layout:fragment="content" class="container-fluid body-content">
+            <div class="row">
+                <div class="col">
+                    <h2>Weather Information</h2>
+                    <div>
+                        <p>The temperature in <span th:text="${weatherInfo.cityName}"></span></p>
+                    </div>
+                </div>
             </div>
-            <div>
-                <ul>
-                    <li th:each="day : ${weatherInfo.weatherInformationForFiveDays}">
-                        <span th:text="${day.getProperDate()}"></span> <span th:text="${day.getDayOfWeek()}"></span>
-                        <table>
-                            <tr>
-                                <th>Time</th>
-                                <th>Temperature</th>
-                                <th>Feels Like</th>
-                                <th>Weather</th>
-                                <th>Precipitation Probability</th>
-                                <th>Wind direction</th>
-                                <th></th>
-                            </tr>
-                            <tr th:each="hours : ${day.getWeatherReport()}">
-                                <td th:text="${hours.getHourAfterMidnight()}"></td>
-                                <td th:text="${hours.temperature} + '°C'"></td>
-                                <td th:text="${hours.feelsLikeTemp} + '°C'"></td>
-                                <td th:text="${hours.getWeatherType().get(0)}"></td>
-                                <td th:text="${hours.precipitationProbability} + '%'"></td>
-                                <td>
-                                    <svg class="wobble" th:transform="'rotate('+ ${hours.getDegree()} +')'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M22 12l-20 12 7.289-12-7.289-12z"/></svg>
-                                    <span th:text="${hours.windDirection}"></span>
-                                </td>
-                                <td class="weather-image"><iframe th:src="${hours.getWeatherType().get(1)}" transform="scale(0.3)" frameBorder="0" scrolling="no" overflow="hidden" allowFullScreen></iframe></td>
-                            </tr>
-                        </table>
-                    </li>
-                </ul>
+            <div class="row">
+                <div class="col">
+                    <ul>
+                        <li th:each="day : ${weatherInfo.weatherInformationForFiveDays}">
+                            <span th:text="${day.getProperDate()}"></span> <span th:text="${day.getDayOfWeek()}"></span>
+                            <table>
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Temperature</th>
+                                    <th>Feels Like</th>
+                                    <th>Weather</th>
+                                    <th>Precipitation Probability</th>
+                                    <th>Wind direction</th>
+                                    <th></th>
+                                </tr>
+                                <tr th:each="hours : ${day.getWeatherReport()}">
+                                    <td th:text="${hours.getHourAfterMidnight()}"></td>
+                                    <td th:text="${hours.temperature} + '°C'"></td>
+                                    <td th:text="${hours.feelsLikeTemp} + '°C'"></td>
+                                    <td th:text="${hours.getWeatherType().get(0)}"></td>
+                                    <td th:text="${hours.precipitationProbability} + '%'"></td>
+                                    <td>
+                                        <svg class="wobble" th:transform="'rotate('+ ${hours.getDegree()} +')'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M22 12l-20 12 7.289-12-7.289-12z"/></svg>
+                                        <span th:text="${hours.windDirection}"></span>
+                                    </td>
+                                    <td class="weather-image"><iframe th:src="${hours.getWeatherType().get(1)}" transform="scale(0.3)" frameBorder="0" scrolling="no" overflow="hidden" allowFullScreen></iframe></td>
+                                </tr>
+                            </table>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col" id='map' style='width: 400px; height: 300px;'></div>
             </div>
+
         </div>
     <script th:inline="javascript">
         let city = [[${weatherInfo.cityName}]];
