@@ -18,6 +18,7 @@ public class Main {
         ArrayList<LocationInformation> listOfCities = retrieveLocations.getListOfCities();
         HashMap<String, String> cities = retrieveLocations.getHashMapOfLocationKeys();
 
+
         // ask user to choose:
         // 1. search by area
         // 2. search by first letter

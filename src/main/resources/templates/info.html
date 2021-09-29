@@ -6,14 +6,56 @@
     <!--@thymesVar id="weatherInfo" type="training.metofficeweather.web.WeatherInfo"-->
 
     <head>
+        <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+        <script src='https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js'></script>
+        <link href='https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css' rel='stylesheet' />
+        <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js SameSite=None'></script>
+        <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.js"></script>
+
+        <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css' type='text/css' />
         <title>Weather Information</title>
     </head>
     <body>
+    <div id='map' style='width: 400px; height: 300px;'></div>
         <div layout:fragment="content" class="container body-content">
             <h2>Weather Information</h2>
             <div>
-                <p>The temperature in <span th:text="${weatherInfo.cityName}"></span> is <span th:text="${weatherInfo.weatherInformation.temperature}"></span>°C <span th:text="${weatherInfo.weatherInformation.getWeatherType(weatherInfo.weatherInformation)}"></span></p>
+                <p>The temperature in <span id="city" th:text="${weatherInfo.cityName}"></span></p>
             </div>
         </div>
+    <script th:inline="javascript">
+        let city = [[${weatherInfo.cityName}]];
+
+        mapboxgl.accessToken = 'pk.eyJ1IjoiYmVjc3VuODYiLCJhIjoiY2tncWZidWp3MDNscDJ5bWZ6ZnVxMHMzZCJ9.s_bv3GqVrN6eX6lLm5KAbA';
+            const mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
+            mapboxClient.geocoding
+            .forwardGeocode({
+            query: city,
+            autocomplete: false,
+            limit: 1
+        })
+            .send()
+            .then((response) => {
+            if (
+            !response ||
+            !response.body ||
+            !response.body.features ||
+            !response.body.features.length
+            ) {
+            console.error('Invalid response:');
+            console.error(response);
+            return;
+        }
+            const feature = response.body.features[0];
+
+            const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: feature.center,
+            zoom: 10
+        });
+            new mapboxgl.Marker().setLngLat(feature.center).addTo(map);
+        });
+    </script>
     </body>
 </html>
