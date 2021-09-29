@@ -11,8 +11,8 @@
         <link href='https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css' rel='stylesheet' />
         <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js SameSite=None'></script>
         <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.js"></script>
-
         <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css' type='text/css' />
+        <link th:href="@{info.css}" rel="stylesheet" />
         <title>Weather Information</title>
     </head>
     <body>
@@ -33,13 +33,20 @@
                                 <th>Feels Like</th>
                                 <th>Weather</th>
                                 <th>Precipitation Probability</th>
+                                <th>Wind direction</th>
+                                <th></th>
                             </tr>
                             <tr th:each="hours : ${day.getWeatherReport()}">
                                 <td th:text="${hours.getHourAfterMidnight()}"></td>
-                                <td th:text="${hours.temperature}"></td>
-                                <td th:text="${hours.feelsLikeTemp}"></td>
-                                <td th:text="${hours.getWeatherType()}"></td>
-                                <td th:text="${hours.precipitationProbability}"></td>
+                                <td th:text="${hours.temperature} + '°C'"></td>
+                                <td th:text="${hours.feelsLikeTemp} + '°C'"></td>
+                                <td th:text="${hours.getWeatherType().get(0)}"></td>
+                                <td th:text="${hours.precipitationProbability} + '%'"></td>
+                                <td>
+                                    <svg class="wobble" th:transform="'rotate('+ ${hours.getDegree()} +')'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M22 12l-20 12 7.289-12-7.289-12z"/></svg>
+                                    <span th:text="${hours.windDirection}"></span>
+                                </td>
+                                <td class="weather-image"><iframe th:src="${hours.getWeatherType().get(1)}" transform="scale(0.3)" frameBorder="0" scrolling="no" overflow="hidden" allowFullScreen></iframe></td>
                             </tr>
                         </table>
                     </li>

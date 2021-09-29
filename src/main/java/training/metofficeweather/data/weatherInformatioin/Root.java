@@ -28,7 +28,7 @@ public class Root{
 
     public void weatherReport(String userInput, Root retrieveWeather) {
         WeatherReport weatherInformation = getWeatherInformationForChosenCity(retrieveWeather);
-        String weatherType = weatherInformation.getWeatherType();
+        String weatherType = weatherInformation.getWeatherType().get(0);
         String temperature = weatherInformation.getTemperature();
 
         System.out.println("The weather forecast in " + userInput + " is " + weatherType + " and the temperature will be " + temperature + "\u00B0C");
