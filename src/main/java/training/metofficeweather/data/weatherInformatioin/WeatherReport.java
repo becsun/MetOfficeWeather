@@ -20,7 +20,7 @@ public class WeatherReport {
     @JsonProperty("S")
     public String windSpeed;
     @JsonProperty("T")
-    public String temperature;
+    public Integer temperature;
     @JsonProperty("V")
     public String visibility;
     @JsonProperty("W")
@@ -54,8 +54,8 @@ public class WeatherReport {
         return windSpeed;
     }
 
-    public String getTemperature() {
-        return temperature + "\u00B0C";
+    public Integer getTemperature() {
+        return temperature ;
     }
 
     public String getVisibility() {

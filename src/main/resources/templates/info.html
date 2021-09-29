@@ -11,6 +11,8 @@
         <link href='https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css' rel='stylesheet' />
         <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js SameSite=None'></script>
         <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.js"></script>
+        <link rel='stylesheet' th:href="@{thermometer.css}"  />
+
 
         <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css' type='text/css' />
         <title>Weather Information</title>
@@ -20,7 +22,7 @@
         <div layout:fragment="content" class="container body-content">
             <h2>Weather Information</h2>
             <div>
-                <p>The temperature in <span th:text="${weatherInfo.cityName}"></span></p>
+
             </div>
             <div>
                 <ul>
@@ -36,7 +38,7 @@
                             </tr>
                             <tr th:each="hours : ${day.getWeatherReport()}">
                                 <td th:text="${hours.getHourAfterMidnight()}"></td>
-                                <td th:text="${hours.temperature}"></td>
+                                <td><span th:text="${hours.temperature} + '°C'"/><input  type='range'  min="0" max="20" th:value= "${hours.temperature}" step="1" orient="vertical"></td>
                                 <td th:text="${hours.feelsLikeTemp}"></td>
                                 <td th:text="${hours.getWeatherType()}"></td>
                                 <td th:text="${hours.precipitationProbability}"></td>
