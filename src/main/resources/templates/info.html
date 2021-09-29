@@ -12,7 +12,30 @@
         <div layout:fragment="content" class="container body-content">
             <h2>Weather Information</h2>
             <div>
-                <p>The temperature in <span th:text="${weatherInfo.cityName}"></span> is <span th:text="${weatherInfo.weatherInformation.temperature}"></span>°C <span th:text="${weatherInfo.weatherInformation.getWeatherType(weatherInfo.weatherInformation)}"></span></p>
+                <p>The temperature in <span th:text="${weatherInfo.cityName}"></span></p>
+            </div>
+            <div>
+                <ul>
+                    <li th:each="day : ${weatherInfo.weatherInformationForFiveDays}">
+                        <span th:text="${day.getProperDate()}"></span> <span th:text="${day.getDayOfWeek()}"></span>
+                        <table>
+                            <tr>
+                                <th>Time</th>
+                                <th>Temperature</th>
+                                <th>Feels Like</th>
+                                <th>Weather</th>
+                                <th>Precipitation Probability</th>
+                            </tr>
+                            <tr th:each="hours : ${day.getWeatherReport()}">
+                                <td th:text="${hours.getHourAfterMidnight()}"></td>
+                                <td th:text="${hours.temperature}"></td>
+                                <td th:text="${hours.feelsLikeTemp}"></td>
+                                <td th:text="${hours.getWeatherType()}"></td>
+                                <td th:text="${hours.precipitationProbability}"></td>
+                            </tr>
+                        </table>
+                    </li>
+                </ul>
             </div>
         </div>
     </body>
